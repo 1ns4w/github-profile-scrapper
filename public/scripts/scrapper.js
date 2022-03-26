@@ -25,7 +25,7 @@
     "dist/scripts/scrapper.js"(exports) {
       Object.defineProperty(exports, "__esModule", { value: true });
       var Person_1 = require_Person();
-      var me = new Person_1.Person("Angel");
+      var me = new Person_1.Person("Angelo");
       var port = chrome.runtime.connect({ name: "safePort" });
       port.postMessage({ me });
     }
