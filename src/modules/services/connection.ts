@@ -1,7 +1,7 @@
 import Dexie from 'dexie';
 
-export const db = new Dexie('GitHub');
+export const db = new Dexie('ghps');
 
 db.version(1).stores({
-	person: '++id, name, username, avatarURL'
+	user: '++id, name, username, avatarURL'
 });

@@ -12,7 +12,7 @@ chrome.action.onClicked.addListener(async tab => {
 chrome.runtime.onConnect.addListener((port) => {
     if(port.name === "safePort"){
         port.onMessage.addListener(async message => {
-            await db.person.add(message);
+            await db.table('user').add(message);
             console.log(message);
         })
     }

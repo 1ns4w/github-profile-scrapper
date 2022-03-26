@@ -14,9 +14,9 @@
   },
   "scripts": {
     "build:ts": "tsc",
-    "build:js": "esbuild dist/background.js dist/scripts/scrapper.js --outdir=public --bundle",
-    "build": "tsc && esbuild dist/background.js dist/scripts/scrapper.js --outdir=public --bundle",
+    "build:js": "esbuild dist/background.js dist/scrapper.js --outdir=public --bundle",
+    "build": "tsc && esbuild dist/background.js dist/scrapper.js --outdir=public --bundle",
     "watch:ts": "tsc --watch",
-    "watch:js": "esbuild dist/background.js dist/scripts/scrapper.js --outdir=public --bundle --watch"
+    "watch:js": "esbuild dist/background.js dist/scrapper.js --outdir=public --bundle --watch"
   }
 }
