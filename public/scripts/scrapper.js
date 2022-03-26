@@ -12,6 +12,7 @@
       Object.defineProperty(exports, "__esModule", { value: true });
       exports.Person = void 0;
       var Person = class {
+        nombre;
         constructor(nombre) {
           this.nombre = nombre;
         }
