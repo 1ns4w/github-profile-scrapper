@@ -1,17 +1,62 @@
+"use strict";
 (() => {
-  // src/utils/evaluators.ts
-  var xpathEval = (expression, node) => {
-    return document.evaluate(expression, node, null, XPathResult.ANY_TYPE, null);
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __commonJS = (cb, mod) => function __require() {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
 
-  // src/scripts/scrapper.ts
-  var followers = [];
-  var followersSpanTags = xpathEval("//span[@class='Link--secondary pl-1' or @class='Link--secondary']", document);
-  var followersIterator = followersSpanTags.iterateNext();
-  while (followersIterator) {
-    followers.push(followersIterator.textContent);
-    followersIterator = followersSpanTags.iterateNext();
-  }
-  var port = chrome.runtime.connect({ name: "safePort" });
-  port.postMessage(followers);
+  // dist/modules/User.js
+  var require_User = __commonJS({
+    "dist/modules/User.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.User = void 0;
+      var User = class {
+        name;
+        username;
+        avatarURL;
+        constructor(name = "", username = "", avatarURL = "") {
+          this.name = name;
+          this.username = username;
+          this.avatarURL = avatarURL;
+        }
+      };
+      exports.User = User;
+    }
+  });
+
+  // dist/utils/evaluators.js
+  var require_evaluators = __commonJS({
+    "dist/utils/evaluators.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.xpathEval = void 0;
+      var xpathEval = (expression, node) => {
+        return document.evaluate(expression, node, null, XPathResult.ANY_TYPE, null);
+      };
+      exports.xpathEval = xpathEval;
+    }
+  });
+
+  // dist/scripts/scrapper.js
+  var require_scrapper = __commonJS({
+    "dist/scripts/scrapper.js"(exports) {
+      Object.defineProperty(exports, "__esModule", { value: true });
+      var User_1 = require_User();
+      var evaluators_1 = require_evaluators();
+      var nameTag = (0, evaluators_1.xpathEval)("//span[@itemprop = 'name']", document);
+      var nameTagIterator = nameTag.iterateNext();
+      var nameTagValue = nameTagIterator?.textContent?.split(/[^\w]+/)[1];
+      var usernameTag = (0, evaluators_1.xpathEval)("//span[@itemprop = 'additionalName']", document);
+      var usernameTagIterator = usernameTag.iterateNext();
+      var usernameTagValue = usernameTagIterator?.textContent?.split(/[^\w]+/)[1];
+      var avatarURLTag = (0, evaluators_1.xpathEval)("//div[@class ='js-profile-editable-replace']//img[contains(@class, 'avatar-user')]", document);
+      var avatarURLTagIterator = avatarURLTag.iterateNext();
+      var avatarURLTagValue = avatarURLTagIterator ? avatarURLTagIterator.src : "";
+      var port = chrome.runtime.connect({ name: "safePort" });
+      port.postMessage(new User_1.User(nameTagValue, usernameTagValue, avatarURLTagValue));
+    }
+  });
+  "use strict";
+  require_scrapper();
 })();

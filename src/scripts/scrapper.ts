@@ -1,14 +1,17 @@
-import { Person } from "../modules/Person";
+import { User } from "../modules/User";
 import { xpathEval } from "../utils/evaluators"
 
-let followers = []
-let followersSpanTags = xpathEval("//span[@class='Link--secondary pl-1' or @class='Link--secondary']", document);
-let followersIterator = followersSpanTags.iterateNext();
+let nameTag = xpathEval("//span[@itemprop = 'name']", document);
+let nameTagIterator = nameTag.iterateNext();
+let nameTagValue = nameTagIterator?.textContent?.split(/[^\w]+/)[1]
 
-while (followersIterator) {
-    followers.push(followersIterator.textContent);
-    followersIterator = followersSpanTags.iterateNext();
-}
+let usernameTag = xpathEval("//span[@itemprop = 'additionalName']", document);
+let usernameTagIterator = usernameTag.iterateNext();
+let usernameTagValue = usernameTagIterator?.textContent?.split(/[^\w]+/)[1]
+
+let avatarURLTag = xpathEval("//div[@class ='js-profile-editable-replace']//img[contains(@class, 'avatar-user')]", document);
+let avatarURLTagIterator = <HTMLImageElement> avatarURLTag.iterateNext();
+let avatarURLTagValue = avatarURLTagIterator ? avatarURLTagIterator.src : "";
 
 let port = chrome.runtime.connect({ name: "safePort" });
-port.postMessage(followers)
+port.postMessage(new User(nameTagValue, usernameTagValue, avatarURLTagValue))
