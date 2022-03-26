@@ -1,0 +1,20 @@
+{
+  "name": "ghfs",
+  "version": "1.0.0",
+  "description": "Chrome extension for scrapping GitHub followers",
+  "main": "background.js",
+  "author": "Insaw",
+  "license": "MIT",
+  "dependencies": {
+    "@types/chrome": "^0.0.180",
+    "@types/node": "^17.0.23",
+    "esbuild": "^0.14.27"
+  },
+  "scripts": {
+    "build:ts": "tsc",
+    "build:js": "esbuild dist/background.js dist/scripts/scrapper.js --outdir=public --bundle",
+    "build": "tsc && esbuild dist/background.js dist/scripts/scrapper.js --outdir=public --bundle",
+    "watch:ts": "tsc --watch",
+    "watch:js": "esbuild dist/background.js dist/scripts/scrapper.js --outdir=public --bundle --watch"
+  }
+}
