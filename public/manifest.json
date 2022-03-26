@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
-    "name": "GitHub Followers Scrapper",
-    "version": "1.0.0",
+    "name": "GitHub Profile Scrapper",
+    "version": "2.0.0",
     "background": {
         "service_worker": "background.js"
     },
