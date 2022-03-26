@@ -1,5 +1,5 @@
-import { User } from "../modules/User";
-import { xpathEval } from "../utils/evaluators"
+import { User } from "./modules/models/User";
+import { xpathEval } from "./modules/utils/evaluators"
 
 let nameTag = xpathEval("//span[@itemprop = 'name']", document);
 let nameTagIterator = nameTag.iterateNext();
