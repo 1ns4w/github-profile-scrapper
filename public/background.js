@@ -1,6 +1,5 @@
-"use strict";
 (() => {
-  // dist/background.js
+  // src/background.ts
   chrome.action.onClicked.addListener(async (tab) => {
     if (tab.id !== void 0) {
       chrome.scripting.executeScript({
