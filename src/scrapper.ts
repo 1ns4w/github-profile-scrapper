@@ -7,7 +7,7 @@ let nameTagValue = nameTagIterator?.textContent?.split(/[^\w]+/)[1]
 
 let usernameTag = xpathEval("//span[@itemprop = 'additionalName']", document);
 let usernameTagIterator = usernameTag.iterateNext();
-let usernameTagValue = usernameTagIterator?.textContent?.split(/[^\w]+/)[1]
+let usernameTagValue = usernameTagIterator?.textContent?.match(/[(a-z)(0-9)]+/ig)?.join(' ')
 
 let avatarURLTag = xpathEval("//div[@class ='js-profile-editable-replace']//img[contains(@class, 'avatar-user')]", document);
 let avatarURLTagIterator = <HTMLImageElement> avatarURLTag.iterateNext();
