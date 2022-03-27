@@ -11,7 +11,7 @@ let usernameTagValue = usernameTagIterator?.textContent?.match(/[(a-z)(0-9)]+/i)
 
 let avatarURLTag = xpathEval("//div[@class ='js-profile-editable-replace']//img[contains(@class, 'avatar-user')]", document);
 let avatarURLTagIterator = <HTMLImageElement> avatarURLTag.iterateNext();
-let avatarURLTagValue = avatarURLTagIterator ? avatarURLTagIterator.src : "";
+let avatarURLTagValue = avatarURLTagIterator.src;
 
 let port = chrome.runtime.connect({ name: "safePort" });
 port.postMessage(new User(nameTagValue, usernameTagValue, avatarURLTagValue))

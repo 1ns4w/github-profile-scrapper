@@ -49,7 +49,7 @@
       var nameTagValue = nameTagIterator?.textContent?.match(/[(a-z)(0-9)]+/ig)?.join(" ");
       var usernameTag = (0, evaluators_1.xpathEval)("//span[@itemprop = 'additionalName']", document);
       var usernameTagIterator = usernameTag.iterateNext();
-      var usernameTagValue = usernameTagIterator?.textContent?.split(/[(a-z)(0-9)]+/i)[0];
+      var usernameTagValue = usernameTagIterator?.textContent?.match(/[(a-z)(0-9)]+/i)?.join();
       var avatarURLTag = (0, evaluators_1.xpathEval)("//div[@class ='js-profile-editable-replace']//img[contains(@class, 'avatar-user')]", document);
       var avatarURLTagIterator = avatarURLTag.iterateNext();
       var avatarURLTagValue = avatarURLTagIterator ? avatarURLTagIterator.src : "";
